@@ -120,4 +120,12 @@ public class Pedido implements Serializable {
 		this.id = id;
 	}
 
+	public Map<Item, Double> getProdutoList() {
+		return produtoList;
+	}
+
+	public void setProdutoList(Map<Item, Double> produtoList) {
+		this.produtoList = produtoList;
+	}
+
 }
