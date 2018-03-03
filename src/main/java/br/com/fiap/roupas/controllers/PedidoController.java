@@ -1,3 +1,4 @@
+package br.com.fiap.roupas.controllers;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
