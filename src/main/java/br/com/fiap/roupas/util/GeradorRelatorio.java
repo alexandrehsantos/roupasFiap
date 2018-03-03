@@ -8,7 +8,8 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
-import br.com.fiap.roupas.roupasfiap.model.Item;
+import br.com.fiap.roupas.roupasfiap.model.Cliente;
+import br.com.fiap.roupas.roupasfiap.model.Empresa;
 import br.com.fiap.roupas.roupasfiap.model.Pedido;
 
 
@@ -70,7 +71,23 @@ public class GeradorRelatorio {
 	
 	public static void main(String[] args) {
 		
+		Pedido pedidofake = new Pedido();
+		Empresa empresafake = new Empresa(); 
+		Cliente clientefake =  new Cliente();
 		
+		clientefake.setCpf("999.999.999-99");
+		clientefake.setNome("Zé Pelintram");
+		
+		empresafake.setCpnj("999.999.999/0001-99");
+		empresafake.setNome("Bugigangas Ltda");
+		empresafake.setEndereco("Rua do Zé Ruela");
+		empresafake.setIncricaoEstadual("11.1111.111-99");
+		empresafake.setInscricaoMunicipal("11.1111.111-99");		
+				
+		pedidofake.setCco(123456L);
+		
+
+				
 	}
 
 }
