@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.fiap.roupas.roupasfiap.filter.PedidoFilter;
 import br.com.fiap.roupas.roupasfiap.model.Pedido;
 import br.com.fiap.roupas.roupasfiap.repository.PedidoRepository;
 
@@ -23,11 +24,9 @@ public class PedidoController {
 	private PedidoRepository pedidoRepository;
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Pedido> gerarPedido(@RequestBody Pedido pedido) {
-
-		pedidoRepository.save(pedido);
-
-		return new ResponseEntity<>(pedido, HttpStatus.OK);
+	public ResponseEntity<Pedido> gerarPedido(@RequestBody PedidoFilter pedidoFilter) {
+		Pedido pedido = new Pedido();
+		return new ResponseEntity<>(pedidoRepository.save(pedido), HttpStatus.OK);
 	}
 
 	@GetMapping
