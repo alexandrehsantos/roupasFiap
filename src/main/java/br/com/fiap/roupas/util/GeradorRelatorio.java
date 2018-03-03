@@ -2,6 +2,9 @@ package br.com.fiap.roupas.util;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -10,6 +13,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import br.com.fiap.roupas.roupasfiap.model.Cliente;
 import br.com.fiap.roupas.roupasfiap.model.Empresa;
+import br.com.fiap.roupas.roupasfiap.model.Item;
 import br.com.fiap.roupas.roupasfiap.model.Pedido;
 
 
@@ -71,10 +75,14 @@ public class GeradorRelatorio {
 	
 	public static void main(String[] args) {
 		
-		Pedido pedidofake = new Pedido();
 		Empresa empresafake = new Empresa(); 
 		Cliente clientefake =  new Cliente();
+		Pedido pedidofake = new Pedido();
+		Item item1 =  new Item();
+		Item item2 =  new Item();
 		
+		Map<Item,Double> itens =  new HashMap<Item,Double>();
+				
 		clientefake.setCpf("999.999.999-99");
 		clientefake.setNome("Zé Pelintram");
 		
@@ -82,12 +90,18 @@ public class GeradorRelatorio {
 		empresafake.setNome("Bugigangas Ltda");
 		empresafake.setEndereco("Rua do Zé Ruela");
 		empresafake.setIncricaoEstadual("11.1111.111-99");
-		empresafake.setInscricaoMunicipal("11.1111.111-99");		
-				
-		pedidofake.setCco(123456L);
+		empresafake.setInscricaoMunicipal("11.1111.111-99");
 		
-
-				
+		item1.setDescricao("Celular Iphone");
+		item1.setValor(new BigDecimal(800.00));
+		
+		item2.setDescricao("Celular Iphone");
+		item2.setValor(new BigDecimal(800.00));	
+		
+		itens.put(item1, 2d);
+		itens.put(item2, 4d);
+		
+		pedidofake.setCco(123456L);				
 	}
 
 }
