@@ -63,8 +63,6 @@ public class GeradorRelatorio {
 			});
 			
 			
-			
-			
 		} catch (FileNotFoundException | DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
