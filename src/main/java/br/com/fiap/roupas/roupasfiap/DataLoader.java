@@ -40,7 +40,7 @@ public class DataLoader implements ApplicationRunner {
 		for (Entry<String, BigDecimal> entry : entrySet) {
 			Item item2 = new Item();
 			item2.setDescricao(entry.getKey());
-			item2.setValor(entry.getValue());
+//			item2.setValor(entry.getValue());
 			itemRepository.save(item2);
 
 		}
