@@ -1,9 +1,7 @@
 package br.com.fiap.roupas.roupasfiap;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -30,7 +28,6 @@ public class DataLoader implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments arg0) throws Exception {
 
-		Item item = null;
 
 		Map<String, BigDecimal> itens = new HashMap<>();
 		itens.put("Whey", new BigDecimal(99));

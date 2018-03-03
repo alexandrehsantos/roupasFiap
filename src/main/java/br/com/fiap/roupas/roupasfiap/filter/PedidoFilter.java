@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import br.com.fiap.roupas.roupasfiap.model.Cliente;
 import br.com.fiap.roupas.roupasfiap.model.Empresa;
 import br.com.fiap.roupas.roupasfiap.model.Item;
 
@@ -17,6 +18,8 @@ public class PedidoFilter {
 	private BigDecimal valorTotal;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataPedido;
+	private Cliente cliente;
+	private Long cco;
 	
 	
 	public Empresa getEmpresa() {
@@ -42,6 +45,18 @@ public class PedidoFilter {
 	}
 	public void setDataPedido(Date dataPedido) {
 		this.dataPedido = dataPedido;
+	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	public Long getCco() {
+		return cco;
+	}
+	public void setCco(Long cco) {
+		this.cco = cco;
 	} 
 	
 	
