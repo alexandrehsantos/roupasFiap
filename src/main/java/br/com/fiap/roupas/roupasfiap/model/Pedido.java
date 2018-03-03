@@ -31,7 +31,9 @@ public class Pedido implements Serializable {
 	private BigDecimal valorTotal;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataPedido;
-
+	@ManyToOne
+	private Cliente cliente;
+	
 	public Empresa getEmpresa() {
 		return empresa;
 	}
@@ -93,6 +95,14 @@ public class Pedido implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 }
