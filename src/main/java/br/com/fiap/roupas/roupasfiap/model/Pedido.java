@@ -3,13 +3,16 @@ package br.com.fiap.roupas.roupasfiap.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
+import java.util.Map;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.MapKeyColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -26,13 +29,17 @@ public class Pedido implements Serializable {
 	private Long id;
 	@ManyToOne
 	private Empresa empresa;
-	@OneToMany
-	private List<Item> produtoList;
+	@ElementCollection
+	@CollectionTable(name = "PEDIDO_PRODUTO_LIST")
+	@MapKeyColumn(name = "quantidade")
+	@Column(name = "quantidade")
+	private Map<Item, Double> produtoList;
 	private BigDecimal valorTotal;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataPedido;
 	@ManyToOne
 	private Cliente cliente;
+	private Long cco;
 	
 	public Empresa getEmpresa() {
 		return empresa;
@@ -59,24 +66,10 @@ public class Pedido implements Serializable {
 	}
 
 	@Override
-	public String toString() {
-		return "PedidoBuilder [empresa=" + empresa + ", produtoList=" + getProdutoList() + ", valorTotal=" + valorTotal
-				+ ", dataPedido=" + dataPedido + "]";
-	}
-
-	public List<Item> getProdutoList() {
-		return produtoList;
-	}
-
-	public void setProdutoList(List<Item> produtoList) {
-		this.produtoList = produtoList;
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
 		return result;
 	}
 
@@ -89,10 +82,10 @@ public class Pedido implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Pedido other = (Pedido) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (getId() == null) {
+			if (other.getId() != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!getId().equals(other.getId()))
 			return false;
 		return true;
 	}
@@ -103,6 +96,28 @@ public class Pedido implements Serializable {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	@Override
+	public String toString() {
+		return "Pedido [id=" + getId() + ", empresa=" + empresa + ", produtoList=" + produtoList + ", valorTotal="
+				+ valorTotal + ", dataPedido=" + dataPedido + ", cliente=" + cliente + "]";
+	}
+
+	public Long getCco() {
+		return cco;
+	}
+
+	public void setCco(Long cco) {
+		this.cco = cco;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }
