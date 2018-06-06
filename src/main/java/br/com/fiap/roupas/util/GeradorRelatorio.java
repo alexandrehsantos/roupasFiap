@@ -15,10 +15,10 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
-import br.com.fiap.roupas.roupasfiap.model.Cliente;
-import br.com.fiap.roupas.roupasfiap.model.Empresa;
-import br.com.fiap.roupas.roupasfiap.model.Item;
-import br.com.fiap.roupas.roupasfiap.model.Pedido;
+import br.com.fiap.roupas.model.Cliente;
+import br.com.fiap.roupas.model.Empresa;
+import br.com.fiap.roupas.model.Item;
+import br.com.fiap.roupas.model.Pedido;
 
 public class GeradorRelatorio {
 

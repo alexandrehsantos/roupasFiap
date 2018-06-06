@@ -1,8 +1,8 @@
-package br.com.fiap.roupas.roupasfiap.repository;
+package br.com.fiap.roupas.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.fiap.roupas.roupasfiap.model.Empresa;
+import br.com.fiap.roupas.model.Empresa;
 public interface EmpresaRepository extends JpaRepository<Empresa, Long>{
 
 }

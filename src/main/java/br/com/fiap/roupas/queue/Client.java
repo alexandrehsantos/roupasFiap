@@ -18,7 +18,7 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-import br.com.fiap.roupas.roupasfiap.model.Pedido;
+import br.com.fiap.roupas.model.Pedido;
 
 public class Client implements Serializable {
 	

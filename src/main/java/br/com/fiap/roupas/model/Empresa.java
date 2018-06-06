@@ -1,15 +1,26 @@
-package br.com.fiap.roupas.roupasfiap.filter;
+package br.com.fiap.roupas.model;
 
-public class EmpresaFilter {
+import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+public class Empresa implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -204217697635435448L;
+	@Id
+	@GeneratedValue
 	private Long id; 
 	private String incricaoEstadual; 
 	private String inscricaoMunicipal;
 	private String cpnj;
 	private String nome; 
 	private String endereco;
-	
-	
 	/**
 	 * @return the id
 	 */
@@ -81,6 +92,8 @@ public class EmpresaFilter {
 	 */
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
-	}
+	} 
 	
+	
+
 }

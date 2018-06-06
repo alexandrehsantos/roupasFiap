@@ -25,10 +25,10 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.fiap.roupas.roupasfiap.model.Cliente;
-import br.com.fiap.roupas.roupasfiap.model.Empresa;
-import br.com.fiap.roupas.roupasfiap.model.Item;
-import br.com.fiap.roupas.roupasfiap.model.Pedido;
+import br.com.fiap.roupas.model.Cliente;
+import br.com.fiap.roupas.model.Empresa;
+import br.com.fiap.roupas.model.Item;
+import br.com.fiap.roupas.model.Pedido;
 
 public class Produce implements Serializable {
 

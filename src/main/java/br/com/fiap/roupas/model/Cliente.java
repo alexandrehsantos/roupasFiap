@@ -1,4 +1,4 @@
-package br.com.fiap.roupas.roupasfiap.model;
+package br.com.fiap.roupas.model;
 
 import java.io.Serializable;
 
