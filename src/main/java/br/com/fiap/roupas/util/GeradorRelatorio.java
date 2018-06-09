@@ -1,44 +1,47 @@
 package br.com.fiap.roupas.util;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.math.BigDecimal;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+
+import org.springframework.stereotype.Service;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
-import br.com.fiap.roupas.model.Cliente;
-import br.com.fiap.roupas.model.Empresa;
-import br.com.fiap.roupas.model.Item;
 import br.com.fiap.roupas.model.Pedido;
 
+@Service
 public class GeradorRelatorio {
 
-	private int numeroitem = 0;	
+	private int numeroitem = 0;
+	private String extension = ".pdf";
+
+	private StringBuilder getFileName(Pedido pedido) {
+		StringBuilder fileName = new StringBuilder();
+		fileName.append(pedido.getDataPedido().getYear()).append(pedido.getDataPedido().getMonth())
+				.append(pedido.getDataPedido().getDay()).append(pedido.getId()).append(extension);
+		return fileName;
+	}
 
 	public void gerarPdf(Pedido pedido) {
 		Document document = new Document();
 
 		try {
-			PdfWriter.getInstance(document, new FileOutputStream("C:\\relatorios\\relatorioPedido.pdf"));
+			File fileName = new File("//mnt//work//projetos//teste//" + this.getFileName(pedido));
+			if (!new File(fileName.getParent()).exists()) {
+				new File(fileName.getParent()).mkdirs();
+			}
+			PdfWriter.getInstance(document, new FileOutputStream(fileName));
 			document.open();
 
-			document.add(new Paragraph(
-					"                          " + pedido.getEmpresa().getNome() + "                     "));
-			document.add(new Paragraph(
-					"                          " + pedido.getEmpresa().getEndereco() + "                 "));
+			document.add(new Paragraph("                          						  "+ pedido.getEmpresa().getNome() + "                     "));
+			document.add(new Paragraph("                                                  "+ pedido.getEmpresa().getEndereco() + "                 "));
 			document.add(new Paragraph("                              SÃO PAULO / SP                    "));
 			document.add(new Paragraph(
 					"                                                                                    "));
-
 			document.add(new Paragraph("CNPJ: " + pedido.getEmpresa().getCpnj()));
 			document.add(new Paragraph("IE: " + pedido.getEmpresa().getIncricaoEstadual()));
 			document.add(new Paragraph("IM: " + pedido.getEmpresa().getInscricaoMunicipal()));
@@ -64,56 +67,55 @@ public class GeradorRelatorio {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			});			
-			
+			});
+
 		} catch (FileNotFoundException | DocumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			document.close();
 		}
 	}
 
-	public static void main(String[] args) throws ParseException {
-
-		Empresa empresafake = new Empresa();
-		Cliente clientefake = new Cliente();
-		Pedido pedidofake = new Pedido();
-		Item item1 = new Item();
-		Item item2 = new Item();
-		Date date;
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		date = (Date) ((DateFormat) format).parse("03/03/2018");
-
-		Map<Item, Double> itens = new HashMap<Item, Double>();
-
-		clientefake.setCpf("999.999.999-99");
-		clientefake.setNome("Zé Pelintram");
-
-		empresafake.setCpnj("999.999.999/0001-99");
-		empresafake.setNome("Bugigangas Ltda");
-		empresafake.setEndereco("Rua do Zé Ruela");
-		empresafake.setIncricaoEstadual("11.1111.111-99");
-		empresafake.setInscricaoMunicipal("11.1111.111-99");
-
-		item1.setDescricao("Celular Iphone");
-		item1.setValor(new BigDecimal(800.00));
-
-		item2.setDescricao("Camera Fotografica");
-		item2.setValor(new BigDecimal(250.00));
-
-		itens.put(item1, 2d);
-		itens.put(item2, 4d);
-
-		pedidofake.setCco(123456L);
-		pedidofake.setCliente(clientefake);
-		pedidofake.setProdutoList(itens);
-		pedidofake.setEmpresa(empresafake);
-		pedidofake.setDataPedido(date);
-		pedidofake.setValorTotal(new BigDecimal(1050));
-		
-		GeradorRelatorio relatorio = new GeradorRelatorio();
-		relatorio.gerarPdf(pedidofake);
-	}
+	// public static void main(String[] args) throws ParseException {
+	//
+	// Empresa empresafake = new Empresa();
+	// Cliente clientefake = new Cliente();
+	// Pedido pedidofake = new Pedido();
+	// Item item1 = new Item();
+	// Item item2 = new Item();
+	// Date date;
+	// SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+	// date = (Date) ((DateFormat) format).parse("03/03/2018");
+	//
+	// Map<Item, Double> itens = new HashMap<Item, Double>();
+	//
+	// clientefake.setCpf("999.999.999-99");
+	// clientefake.setNome("Zé Pelintram");
+	//
+	// empresafake.setCpnj("999.999.999/0001-99");
+	// empresafake.setNome("Bugigangas Ltda");
+	// empresafake.setEndereco("Rua do Zé Ruela");
+	// empresafake.setIncricaoEstadual("11.1111.111-99");
+	// empresafake.setInscricaoMunicipal("11.1111.111-99");
+	//
+	// item1.setDescricao("Celular Iphone");
+	// item1.setValor(new BigDecimal(800.00));
+	//
+	// item2.setDescricao("Camera Fotografica");
+	// item2.setValor(new BigDecimal(250.00));
+	//
+	// itens.put(item1, 2d);
+	// itens.put(item2, 4d);
+	//
+	// pedidofake.setCco(123456L);
+	// pedidofake.setCliente(clientefake);
+	// pedidofake.setProdutoList(itens);
+	// pedidofake.setEmpresa(empresafake);
+	// pedidofake.setDataPedido(date);
+	// pedidofake.setValorTotal(new BigDecimal(1050));
+	//
+	// GeradorRelatorio relatorio = new GeradorRelatorio();
+	// relatorio.gerarPdf(pedidofake);
+	// }
 
 }

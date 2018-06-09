@@ -60,20 +60,11 @@ public class Item implements Serializable {
 		this.valor = valor;
 	}
 
-	/**
-	 * @return the valor
-	 */
-//	public BigDecimal getValor() {
-//		return valor;
-//	}
-//
-//	/**
-//	 * @param valor the valor to set
-//	 */
-//	public void setValor(BigDecimal valor) {
-//		this.valor = valor;
-//	}
+	@Override
+	public String toString() {
+		return "Item [id=" + id + ", descricao=" + descricao + ", valor=" + valor + "]";
+	}
 
-	
+
 
 }

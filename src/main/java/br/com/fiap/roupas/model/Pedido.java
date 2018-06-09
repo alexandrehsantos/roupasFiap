@@ -10,11 +10,14 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyColumn;
+import javax.persistence.MapKeyJoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -32,10 +35,10 @@ public class Pedido implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Empresa empresa;
 	@ElementCollection
-	@CollectionTable(name = "PEDIDO_PRODUTO_LIST")
-	@MapKeyColumn(name = "quantidade")
+	@CollectionTable(name = "PEDIDO_PRODUTO_LIST", joinColumns = @JoinColumn(name = "ID"), foreignKey = @ForeignKey (name = "fk_item_id")
+			)
 	@Column(name = "quantidade")
-	@JoinColumn(name = "id")
+	@MapKeyJoinColumn(name = "Item", referencedColumnName = "ID")
 	private Map<Item, Double> produtoList;
 	private BigDecimal valorTotal;
 	@Temporal(TemporalType.DATE)
@@ -182,6 +185,12 @@ public class Pedido implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Pedido [id=" + id + ", empresa=" + empresa + ", produtoList=" + produtoList + ", valorTotal="
+				+ valorTotal + ", dataPedido=" + dataPedido + ", cliente=" + cliente + ", cco=" + cco + "]";
 	}
 
 }
