@@ -1,5 +1,7 @@
 package br.com.fiap.roupas.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -36,14 +38,17 @@ public class PedidoController {
 	@Autowired
 	private PedidoObserverQueueSender pedidoObserverQueueSender;
 
+	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Pedido> gerarPedido(@RequestBody PedidoFilter pedidoFilter) {
-
+		LOGGER.info("[INFO] [START] gerarPedido");
 		pedidoBuilder.adicionaAcaoPedidoObserver(pedidoObserverRecorder);
 		pedidoBuilder.adicionaAcaoPedidoObserver(pedidoObserverCouponGenerator);
 		pedidoBuilder.adicionaAcaoPedidoObserver(pedidoObserverQueueSender);
 
 		Pedido pedido = pedidoBuilder.buid(pedidoFilter);
+		LOGGER.info("[INFO] [START] gerarPedido");
 		return new ResponseEntity<>(pedido, HttpStatus.OK);
 	}
 
