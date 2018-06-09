@@ -1,18 +1,24 @@
 {
-	"Empresa":{
-				"inscricaoEstadual":"111111", 
-				"inscricaoMunicipal":"01020001012", 
-				"cnpj":"101.101.101/0001-00",
-				"nome":"Empresa x",
-				"endereco":"Rua xxxxxx"},
-				"produtoList":{
-							"id":"1",
-							"quantidade":"2"
-				},
-	"cliente":	{
-				"nome":"xxx",
-				"cpf":"0000000"
-				},
-	"dataPedido":"2015-07-05T22:16:18Z",	
-	"cco":"1234"
+	"cliente": {
+		"cpf": "0000000",
+		"nome": "xxx"
+	},
+	"empresa": {
+		"cpnj": "0000000",
+		"endereco": "Rua xxxxxx",
+		"incricaoEstadual": "111111",
+		"inscricaoMunicipal": "01020001012",
+		"nome": "Empresa x"
+	},
+	"itemList": [
+		{
+			"id": 1,
+			"quantidade": 2
+		},
+		{
+			"id": 3,
+			"quantidade": 30
+		}
+	],
+	"dataPedido": "2018-06-09T00:49:51.971Z"
 }

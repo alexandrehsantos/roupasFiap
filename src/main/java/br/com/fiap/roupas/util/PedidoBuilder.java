@@ -19,6 +19,7 @@ import br.com.fiap.roupas.model.Item;
 import br.com.fiap.roupas.model.Pedido;
 import br.com.fiap.roupas.observer.PedidoObserver;
 import br.com.fiap.roupas.repository.ItemRepository;
+import br.com.fiap.roupas.service.PedidoService;
 
 @Service
 public class PedidoBuilder {
@@ -28,6 +29,9 @@ public class PedidoBuilder {
 
 	@Autowired
 	private ItemRepository itemRepository;
+
+	@Autowired
+	private PedidoService pedidoService;
 
 	private List<PedidoObserver> pedidoObserverList;
 
@@ -45,6 +49,8 @@ public class PedidoBuilder {
 
 		setItemValues(pedido);
 
+		difinirCoo(pedido);
+
 		BigDecimal totalPedido = calcularTotal(pedido, pedidoFilter, totalPorItem);
 		pedido.setValorTotal(totalPedido);
 
@@ -52,6 +58,14 @@ public class PedidoBuilder {
 
 		LOGGER.debug("[STOP] [DEBUG] buid");
 		return pedido;
+	}
+
+	private void difinirCoo(Pedido pedido) {
+		if (pedidoService.getLastID() == null) {
+			pedido.setCoo(1L);
+		} else {
+			pedido.setCoo(pedidoService.getLastID() + 1);
+		}
 	}
 
 	private void executarObserver(Pedido pedido) {

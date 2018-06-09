@@ -19,7 +19,7 @@ public class PedidoFilter implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataPedido;
 	private ClienteFilter cliente;
-	private Long cco;
+	private Long coo;
 
 	public EmpresaFilter getEmpresa() {
 		return empresa;
@@ -55,16 +55,16 @@ public class PedidoFilter implements Serializable {
 	/**
 	 * @return the cco
 	 */
-	public Long getCco() {
-		return cco;
+	public Long getCoo() {
+		return coo;
 	}
 
 	/**
 	 * @param cco
 	 *            the cco to set
 	 */
-	public void setCco(Long cco) {
-		this.cco = cco;
+	public void setCoo(Long cco) {
+		this.coo = cco;
 	}
 
 	/**

@@ -45,7 +45,8 @@ public class Pedido implements Serializable {
 	private Date dataPedido;
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Cliente cliente;
-	private Long cco;
+	/*contatdo de ordem de operações*/
+	private Long coo;
 
 	/**
 	 * @return the id
@@ -140,16 +141,16 @@ public class Pedido implements Serializable {
 	/**
 	 * @return the cco
 	 */
-	public Long getCco() {
-		return cco;
+	public Long getCoo() {
+		return coo;
 	}
 
 	/**
 	 * @param cco
 	 *            the cco to set
 	 */
-	public void setCco(Long cco) {
-		this.cco = cco;
+	public void setCoo(Long cco) {
+		this.coo = cco;
 	}
 
 	/*
@@ -190,7 +191,7 @@ public class Pedido implements Serializable {
 	@Override
 	public String toString() {
 		return "Pedido [id=" + id + ", empresa=" + empresa + ", produtoList=" + produtoList + ", valorTotal="
-				+ valorTotal + ", dataPedido=" + dataPedido + ", cliente=" + cliente + ", cco=" + cco + "]";
+				+ valorTotal + ", dataPedido=" + dataPedido + ", cliente=" + cliente + ", cco=" + coo + "]";
 	}
 
 }

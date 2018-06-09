@@ -21,4 +21,9 @@ public class PedidoService {
 		return pedidoRepository.findOne(id);
 	}
 
+	public Long getLastID() {
+
+		return pedidoRepository.getLastId();
+	}
+
 }
